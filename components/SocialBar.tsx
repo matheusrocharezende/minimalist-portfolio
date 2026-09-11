@@ -23,7 +23,7 @@ const links = [
 
 export default function SocialBar() {
   return (
-    <footer className="flex w-full shrink-0 items-center justify-center gap-5 pb-4">
+    <footer className="flex w-full shrink-0 items-center justify-center gap-3 pb-4">
       {links.map((link) => (
         <a
           key={link.name}
@@ -31,10 +31,12 @@ export default function SocialBar() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.name}
-          className="mix-blend-plus-lighter flex size-9 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/10"
+          className="flex size-11 shrink-0 items-center justify-center"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={link.icon} alt="" className="size-4" />
+          <span className="mix-blend-plus-lighter flex size-9 items-center justify-center rounded-full transition-colors hover:bg-white/10">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={link.icon} alt="" className="size-4" />
+          </span>
         </a>
       ))}
     </footer>
