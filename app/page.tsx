@@ -1,19 +1,21 @@
 import Header from "@/components/Header";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import SocialBar from "@/components/SocialBar";
-import { getSlideshowImages } from "@/lib/getSlideshowImages";
+import { getSlideshowMedia, type SlideshowMedia } from "@/lib/getSlideshowMedia";
 
-const fallbackImages = ["/images/placeholder-1.png"];
+const fallbackMedia: SlideshowMedia[] = [
+  { src: "/images/placeholder-1.png", type: "image" },
+];
 
 export const revalidate = 60;
 
 export default async function Home() {
-  const images = await getSlideshowImages();
+  const media = await getSlideshowMedia();
 
   return (
     <div className="flex h-dvh flex-col items-center gap-10 bg-black md:gap-16">
       <Header />
-      <HeroSlideshow images={images.length > 0 ? images : fallbackImages} />
+      <HeroSlideshow media={media.length > 0 ? media : fallbackMedia} />
       <SocialBar />
     </div>
   );

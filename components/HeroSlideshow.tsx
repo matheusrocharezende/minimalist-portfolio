@@ -5,16 +5,18 @@ import type { Swiper as SwiperInstance } from "swiper";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import type { SlideshowMedia } from "@/lib/getSlideshowMedia";
+
 import "swiper/css";
 import "swiper/css/pagination";
 
 type HeroSlideshowProps = {
-  images: string[];
+  media: SlideshowMedia[];
   intervalMs?: number;
 };
 
 export default function HeroSlideshow({
-  images,
+  media,
   intervalMs = 5000,
 }: HeroSlideshowProps) {
   const handleSlideClick = (
@@ -33,22 +35,33 @@ export default function HeroSlideshow({
           modules={[Autoplay, Pagination]}
           autoplay={{ delay: intervalMs, disableOnInteraction: false }}
           pagination={{ clickable: true }}
-          loop={images.length > 1}
+          loop={media.length > 1}
           observer
           observeParents
           onClick={handleSlideClick}
           className="hero-slideshow h-full w-full cursor-pointer"
         >
-          {images.map((src, index) => (
-            <SwiperSlide key={`${src}-${index}`} className="relative">
-              <Image
-                src={src}
-                alt=""
-                fill
-                sizes="(min-width: 768px) 1328px, 100vw"
-                priority={index === 0}
-                className="object-contain"
-              />
+          {media.map((item, index) => (
+            <SwiperSlide key={`${item.src}-${index}`} className="relative">
+              {item.type === "video" ? (
+                <video
+                  src={item.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 size-full object-contain"
+                />
+              ) : (
+                <Image
+                  src={item.src}
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 1328px, 100vw"
+                  priority={index === 0}
+                  className="object-contain"
+                />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
