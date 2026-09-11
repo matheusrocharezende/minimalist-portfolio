@@ -23,7 +23,7 @@ const links = [
 
 export default function SocialBar() {
   return (
-    <footer className="flex w-full shrink-0 items-center justify-center gap-10 px-6 pb-10 md:gap-20 md:px-10 md:py-10">
+    <footer className="flex w-full shrink-0 items-center justify-center gap-10 px-6 pb-8 md:gap-20 md:px-10 md:py-10">
       {links.map((link) => (
         <a
           key={link.name}
