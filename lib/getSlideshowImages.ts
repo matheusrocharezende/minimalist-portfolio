@@ -8,7 +8,7 @@ export async function getSlideshowImages(): Promise<string[]> {
   if (error || !data) return [];
 
   return data
-    .filter((file) => file.id)
+    .filter((file) => file.id && file.name !== ".emptyFolderPlaceholder")
     .map(
       (file) =>
         supabase.storage.from(IMAGES_BUCKET).getPublicUrl(file.name).data
