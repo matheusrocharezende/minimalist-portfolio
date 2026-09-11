@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="flex w-full shrink-0 items-center justify-between px-6 pt-6 text-base font-bold tracking-wide uppercase md:px-10 md:pt-10">
+    <header className="flex w-full shrink-0 items-center justify-between px-6 pt-4 text-base font-bold tracking-wide uppercase md:h-16 md:px-4 md:pb-6">
       <div className="flex items-center gap-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/icons/logo-mark.svg" alt="" className="size-4" />

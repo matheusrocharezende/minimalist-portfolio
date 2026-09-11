@@ -13,7 +13,7 @@ export default async function Home() {
   const media = await getSlideshowMedia();
 
   return (
-    <div className="flex h-dvh flex-col items-center gap-10 bg-black md:gap-16">
+    <div className="flex h-dvh flex-col items-center gap-6 bg-black md:gap-0">
       <Header />
       <HeroSlideshow media={media.length > 0 ? media : fallbackMedia} />
       <SocialBar />
