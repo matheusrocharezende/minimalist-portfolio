@@ -23,7 +23,7 @@ const links = [
 
 export default function SocialBar() {
   return (
-    <footer className="flex w-full shrink-0 items-center justify-center gap-10 px-6 pb-10 md:gap-20 md:px-16 md:pb-16">
+    <footer className="flex w-full shrink-0 items-center justify-center gap-10 px-6 pb-10 md:gap-20 md:px-10 md:py-10">
       {links.map((link) => (
         <a
           key={link.name}
@@ -31,7 +31,7 @@ export default function SocialBar() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.name}
-          className="size-6 shrink-0 opacity-90 transition-opacity hover:opacity-100 md:size-12"
+          className="size-6 shrink-0 opacity-90 transition-opacity hover:opacity-100 md:size-8"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={link.icon} alt="" className="size-full" />

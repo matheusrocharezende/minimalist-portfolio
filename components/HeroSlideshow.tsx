@@ -23,8 +23,8 @@ export default function HeroSlideshow({
   }, [images.length, intervalMs]);
 
   return (
-    <div className="flex min-h-0 w-full flex-1 px-6 md:px-16">
-      <div className="relative mx-auto h-full w-full max-w-[1328px] overflow-hidden bg-[#d9d9d9] p-4 md:p-8">
+    <div className="flex min-h-0 w-full flex-1 px-6 md:px-10">
+      <div className="relative mx-auto h-full w-full max-w-[1328px] overflow-hidden bg-black p-4 md:p-8">
         <div className="relative h-full w-full">
           {images.map((src, index) => (
             <Image
