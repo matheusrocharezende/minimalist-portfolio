@@ -7,3 +7,12 @@
 body {
   font-family: var(--font-sans);
 }
+
+.hero-slideshow .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+.hero-slideshow .swiper-pagination-bullet-active {
+  background: #ffffff;
+}

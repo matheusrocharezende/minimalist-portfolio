@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import type { Swiper as SwiperInstance } from "swiper";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 type HeroSlideshowProps = {
   images: string[];
@@ -12,34 +17,41 @@ export default function HeroSlideshow({
   images,
   intervalMs = 5000,
 }: HeroSlideshowProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    if (images.length < 2) return;
-    const timer = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % images.length);
-    }, intervalMs);
-    return () => clearInterval(timer);
-  }, [images.length, intervalMs]);
+  const handleSlideClick = (
+    swiper: SwiperInstance,
+    event: MouseEvent | TouchEvent | PointerEvent,
+  ) => {
+    const target = event.target as HTMLElement;
+    if (target.closest(".swiper-pagination-bullet")) return;
+    swiper.slideNext();
+  };
 
   return (
     <div className="flex min-h-0 w-full flex-1 px-6 md:px-10">
       <div className="relative mx-auto h-full w-full max-w-[1328px] overflow-hidden bg-black p-4 md:p-8">
-        <div className="relative h-full w-full">
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          autoplay={{ delay: intervalMs, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          loop={images.length > 1}
+          observer
+          observeParents
+          onClick={handleSlideClick}
+          className="hero-slideshow h-full w-full cursor-pointer"
+        >
           {images.map((src, index) => (
-            <Image
-              key={`${src}-${index}`}
-              src={src}
-              alt=""
-              fill
-              sizes="(min-width: 768px) 1328px, 100vw"
-              priority={index === 0}
-              className={`object-contain transition-opacity duration-1000 ease-in-out ${
-                index === activeIndex ? "opacity-100" : "opacity-0"
-              }`}
-            />
+            <SwiperSlide key={`${src}-${index}`} className="relative">
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="(min-width: 768px) 1328px, 100vw"
+                priority={index === 0}
+                className="object-contain"
+              />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </div>
   );
