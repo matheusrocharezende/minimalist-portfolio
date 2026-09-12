@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
 import "./globals.css";
-
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-archivo",
-});
 
 export const metadata: Metadata = {
   title: "Matheus Rocha — Designer",
@@ -15,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`h-full ${archivo.variable}`}>
+    <html lang="pt-BR" className="h-full">
       <body className="min-h-full bg-black text-white antialiased">
         {children}
       </body>
