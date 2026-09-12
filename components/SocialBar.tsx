@@ -24,19 +24,23 @@ const links = [
 export default function SocialBar() {
   return (
     <footer className="flex w-full shrink-0 items-center justify-center gap-3 pb-4">
-      {links.map((link) => (
-        <a
-          key={link.name}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={link.name}
-          className="mix-blend-plus-lighter flex size-11 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/10"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={link.icon} alt="" className="size-5" />
-        </a>
-      ))}
+      {links.map((link) => {
+        const isExternal = !link.href.startsWith("mailto:");
+
+        return (
+          <a
+            key={link.name}
+            href={link.href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            aria-label={link.name}
+            className="mix-blend-plus-lighter flex size-11 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/10"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={link.icon} alt="" className="size-5" />
+          </a>
+        );
+      })}
     </footer>
   );
 }
