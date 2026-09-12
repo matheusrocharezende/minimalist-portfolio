@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-archivo), "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
 
 body {
