@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import type { Swiper as SwiperInstance } from "swiper";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import type { SlideshowMedia } from "@/lib/getSlideshowMedia";
 
 import "swiper/css";
+import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
 type HeroSlideshowProps = {
@@ -32,7 +33,10 @@ export default function HeroSlideshow({
     <div className="flex min-h-0 w-full flex-1 md:px-4">
       <div className="relative mx-auto h-full w-full max-w-[952px] overflow-hidden bg-black p-4 md:p-8">
         <Swiper
-          modules={[Autoplay, Pagination]}
+          modules={[Autoplay, EffectFade, Pagination]}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          speed={800}
           autoplay={{ delay: intervalMs, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop={media.length > 1}
