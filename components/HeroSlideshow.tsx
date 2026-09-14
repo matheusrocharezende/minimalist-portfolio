@@ -6,6 +6,7 @@ import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import type { SlideshowMedia } from "@/lib/getSlideshowMedia";
+import { useScrollRevealed } from "./ScrollRevealProvider";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -20,6 +21,8 @@ export default function HeroSlideshow({
   media,
   intervalMs = 5000,
 }: HeroSlideshowProps) {
+  const revealed = useScrollRevealed();
+
   const handleSlideClick = (
     swiper: SwiperInstance,
     event: MouseEvent | TouchEvent | PointerEvent,
@@ -31,7 +34,11 @@ export default function HeroSlideshow({
 
   return (
     <div className="flex min-h-0 w-full flex-1 md:px-4">
-      <div className="relative mx-auto h-full w-full max-w-[952px] overflow-hidden bg-black p-4 md:p-8">
+      <div
+        className={`relative mx-auto h-full w-full max-w-[952px] overflow-hidden bg-black p-4 transition-[filter] duration-300 ease-out md:p-8 ${
+          revealed ? "blur-lg" : "blur-none"
+        }`}
+      >
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
           effect="fade"
