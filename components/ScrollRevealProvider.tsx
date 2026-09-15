@@ -47,6 +47,18 @@ export default function ScrollRevealProvider({
     };
   }, []);
 
+  useEffect(() => {
+    if (!revealed) return;
+
+    const onClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest("nav")) setRevealed(false);
+    };
+
+    window.addEventListener("click", onClickOutside);
+    return () => window.removeEventListener("click", onClickOutside);
+  }, [revealed]);
+
   return (
     <ScrollRevealContext.Provider value={revealed}>
       {children}
